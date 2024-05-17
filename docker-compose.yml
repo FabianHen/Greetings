@@ -1,0 +1,19 @@
+services:
+  mongodb:
+    image: mongo
+    volumes:
+      - data:/data/db
+    env_file:
+      - ./env/mongo.env
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./env/backend.env
+volumes:
+  data:
